@@ -9,8 +9,47 @@ import static org.junit.jupiter.api.Assertions.*;
 class AccountTest {
 
     @Test
-    void myTest(){
+    void newAccountShouldNotBeActiveAfterCreation(){
+        //given
+        //when
       Account newAccount = new Account();
+      //then
       assertFalse(newAccount.isActive());
+    }
+
+    @Test
+    void accountShouldBeActiveAfterActivation(){
+        //given
+        Account account = new Account();
+        assertFalse(account.isActive());
+        //when
+        account.activate();
+        //then
+        assertTrue(account.isActive());
+    }
+
+    @Test
+    void newlyCreatedAccountShouldNotHaveDefaultDeliveryAddressSet(){
+         //given
+        Account account = new Account();
+
+        //when
+        Address address = account.getDefaultDeliveryAddress();
+
+        //then
+        assertNull(address);
+    }
+
+    @Test
+    void defaultDeliveryAddresShouldNotBeNullAfterSet(){
+        //given
+        Address address = new Address("Żorska","105A");
+        Account account = new Account();
+
+        //when
+        account.setDefaultDeliveryAddress(address);
+
+        //then
+        assertNotNull(account.getDefaultDeliveryAddress());
     }
 }
