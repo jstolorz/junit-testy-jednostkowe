@@ -1,9 +1,9 @@
 package org.bluesoft.testing;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
@@ -15,6 +15,9 @@ class AccountTest {
       Account newAccount = new Account();
       //then
       assertFalse(newAccount.isActive());
+      assertThat(newAccount.isActive(), equalTo(false));
+      assertThat(newAccount.isActive(), is(false));
+
     }
 
     @Test
@@ -26,6 +29,7 @@ class AccountTest {
         account.activate();
         //then
         assertTrue(account.isActive());
+        assertThat(account.isActive(), equalTo(true));
     }
 
     @Test
@@ -38,6 +42,8 @@ class AccountTest {
 
         //then
         assertNull(address);
+        assertThat(address, nullValue());
+
     }
 
     @Test
@@ -51,5 +57,6 @@ class AccountTest {
 
         //then
         assertNotNull(account.getDefaultDeliveryAddress());
+        assertThat(account.getDefaultDeliveryAddress(), notNullValue());
     }
 }
