@@ -2,9 +2,11 @@ package org.bluesoft.testing;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+//import static org.hamcrest.MatcherAssert.assertThat;
+//import static org.hamcrest.Matchers.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class AccountTest {
 
@@ -15,8 +17,15 @@ class AccountTest {
       Account newAccount = new Account();
       //then
       assertFalse(newAccount.isActive());
-      assertThat(newAccount.isActive(), equalTo(false));
-      assertThat(newAccount.isActive(), is(false));
+
+      //assertThat(newAccount.isActive(), equalTo(false));
+
+      // Hamcrest
+      // assertThat(newAccount.isActive(), is(false));
+
+      // assertJ
+      assertThat(newAccount.isActive()).isFalse();
+
 
     }
 
@@ -29,7 +38,12 @@ class AccountTest {
         account.activate();
         //then
         assertTrue(account.isActive());
-        assertThat(account.isActive(), equalTo(true));
+
+        // Hamcrest
+        //assertThat(account.isActive(), equalTo(true));
+
+        // assertJ
+        assertThat(account.isActive()).isTrue();
     }
 
     @Test
@@ -42,7 +56,12 @@ class AccountTest {
 
         //then
         assertNull(address);
-        assertThat(address, nullValue());
+
+        // Hamcrest
+        //assertThat(address, nullValue());
+
+        // assertJ
+        assertThat(address).isNull();
 
     }
 
@@ -57,6 +76,11 @@ class AccountTest {
 
         //then
         assertNotNull(account.getDefaultDeliveryAddress());
-        assertThat(account.getDefaultDeliveryAddress(), notNullValue());
+
+        // Hamcrest
+        //assertThat(account.getDefaultDeliveryAddress(), notNullValue());
+
+        // assertJ
+        assertThat(account.getDefaultDeliveryAddress()).isNotNull();
     }
 }
