@@ -1,5 +1,7 @@
 package org.bluesoft.testing;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,6 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class OrderTest {
 
+    Order order;
+
+    @BeforeEach
+    void initializeOrder(){
+        order = new Order();
+    }
+
+    @AfterEach
+    void cleanUp(){
+        order.cancel();
+    }
 
     @Test
     void testAssertArrayEquals(){
@@ -27,7 +40,7 @@ class OrderTest {
     void mealListShouldBeEmptyAfterCreationOfOrder(){
 
         //given
-        Order order = new Order();
+        //Order order = new Order();
 
         //then
         // Hamcrest
@@ -47,7 +60,7 @@ class OrderTest {
         Meal meal = new Meal(15,"Burger");
         Meal meal2 = new Meal(5,"Juice");
 
-        Order order = new Order();
+        //Order order = new Order();
 
         //when
         order.addMealToOrder(meal);
@@ -64,7 +77,7 @@ class OrderTest {
 
         //given
         Meal meal = new Meal(15,"Burger");
-        Order order = new Order();
+        //Order order = new Order();
 
         //when
         order.addMealToOrder(meal);
@@ -81,7 +94,7 @@ class OrderTest {
         Meal meal1 = new Meal(15,"Burger");
         Meal meal2 = new Meal(5,"Juice");
 
-        Order order = new Order();
+        //Order order = new Order();
 
         //when
         order.addMealToOrder(meal1);
