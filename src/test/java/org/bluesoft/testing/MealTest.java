@@ -1,6 +1,7 @@
 package org.bluesoft.testing;
 
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -94,6 +95,7 @@ class MealTest {
         assertThat(price,greaterThanOrEqualTo(10));
     }
 
+    @Tag("Fries")
     @ParameterizedTest
     @MethodSource("createCakeNames")
     void cakeNamesShouldEndWithCake(String name){
@@ -125,6 +127,7 @@ class MealTest {
         assertThat(price, lessThan(10));
     }
 
+    @Tag("Fries")
     @TestFactory
     Collection<DynamicTest> calculateMealPrices(){
        //given
