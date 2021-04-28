@@ -1,6 +1,7 @@
 package org.bluesoft.testing;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -107,5 +108,16 @@ class MealTest {
         return cakeName.stream();
     }
 
+    @ExtendWith(IAExceptionIgnoreExtension.class)
+    @ParameterizedTest
+    @ValueSource(ints = {3,1,5,8})
+    void mealPricesShouldBeLowerThan10(int price){
+
+        if(price > 5){
+            throw  new IllegalArgumentException();
+        }
+
+        assertThat(price, lessThan(10));
+    }
 
 }
